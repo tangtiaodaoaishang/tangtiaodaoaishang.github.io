@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"tangtiaodaoaishang.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="注意:steam++软件会占用80端口,如果要启动80端口的项目,需要进任务管理器(查看对应的pid名)停止进程注意:nacos启动是依赖于数据库的,所以启动nacos时,需要开启数据库,我设置的数据库名为nacos 查看windows指定端口占用命令:netstat -aon|findstr 端口号结束windows相应的端口进程命令:taskkill &#x2F;f &#x2F;t &amp;#x2F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springcloud学习">
+<meta property="og:url" content="https://tangtiaodaoaishang.github.io/2023/11/28/springcloud%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="注意:steam++软件会占用80端口,如果要启动80端口的项目,需要进任务管理器(查看对应的pid名)停止进程注意:nacos启动是依赖于数据库的,所以启动nacos时,需要开启数据库,我设置的数据库名为nacos 查看windows指定端口占用命令:netstat -aon|findstr 端口号结束windows相应的端口进程命令:taskkill &#x2F;f &#x2F;t &amp;#x2F">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-28T12:58:30.000Z">
+<meta property="article:modified_time" content="2023-11-28T13:19:25.969Z">
+<meta property="article:author" content="ldjc">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://tangtiaodaoaishang.github.io/2023/11/28/springcloud%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>springcloud学习 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tangtiaodaoaishang.github.io/2023/11/28/springcloud%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ldjc">
+      <meta itemprop="description" content="有志者，事竟成，破釜沉舟，百二秦关终属楚；苦心人，天不负，卧薪尝胆，三千越甲可吞吴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          springcloud学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-11-28 20:58:30 / 修改时间：21:19:25" itemprop="dateCreated datePublished" datetime="2023-11-28T20:58:30+08:00">2023-11-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>注意:steam++软件会占用80端口,如果要启动80端口的项目,需要进任务管理器(查看对应的pid名)停止进程<br>注意:nacos启动是依赖于数据库的,所以启动nacos时,需要开启数据库,我设置的数据库名为nacos</p>
+<p>查看windows指定端口占用命令:netstat -aon|findstr 端口号<br>结束windows相应的端口进程命令:taskkill &#x2F;f &#x2F;t &#x2F;im PID名<br>查看linux指定端口占用命令:netstat -anp|grep 8080<br>结束linux相应的端口进程命令:kill -9 PID名</p>
+<p>关于nacos集成feign的bug<br>   已解决集成feign报错：No Feign Client for loadBalancing defined. Did you forget to include<br>      解决方案:加入spring-cloud-loadbalancer依赖,不然loadbalancer无效<br>        <dependency><br>            <groupId>org.springframework.cloud</groupId><br>            <artifactId>spring-cloud-loadbalancer</artifactId><br>        </dependency><br>关于nacos集成gateway后无法打开其他服务的bug(请求后页面报503错误)<br>      解决方案同上加入spring-cloud-loadbalancer依赖</p>
+<p>springcloud-alibaba:<br>  在github上搜索alibaba即可找到源码和文档等,打开Wiki选项,查看文档</p>
+<p>nacos可以从github上查找并下载<br>  -配置nacos<br>    1.将conf文件夹下的nacos-mysql.sql文件弄到navicat的数据库中生成对应的表<br>    2.修改application.properties文件信息:<br>       #*************** Config Module Related Configurations ***************#<br>       ### If use MySQL as datasource:<br>       spring.datasource.platform&#x3D;mysql(这行代码将注释删掉)<br>       ### Count of DB:<br>       db.num&#x3D;1(这行代码将注释删掉)<br>       ### Connect URL of DB:<br>       db.url.0&#x3D;jdbc:mysql:&#x2F;&#x2F;127.0.0.1:3306&#x2F;nacos?characterEncoding&#x3D;utf8&amp;connectTimeout&#x3D;1000&amp;socketTimeout&#x3D;3000&amp;autoReconnect&#x3D;true&amp;useUnicode&#x3D;true&amp;useSSL&#x3D;false&amp;serverTimezone&#x3D;UTC(这行代码将注释删掉,并修改数据库名字)<br>       db.user.0&#x3D;root(这行代码将注释删掉,并修改数据库的用户名)<br>       db.password.0&#x3D;210210(这行代码将注释删掉,并修改数据库的密码)<br>    3.开启windows下的nacos服务:在bin目录下启动startup.cmd文件,因为默认是集群启动方式所以会报错<br>        -改变启动方式为单机(有两种方案)<br>         第一种:在bin目录下启动cmd窗口,输入命令startup.cmd -m standalone(-m参数指定单机&#x2F;联机模式)<br>         第二种:编辑startup.cmd文件,将set MODE属性值修改为”standalone”(即set MODE&#x3D;”standalone”)</p>
+<pre><code>4.浏览器输入http://localhost:8848/nacos网址,即可进入nacos网站
+5.nacos的用户名和密码默认都是nacos
+</code></pre>
+<p>关于建立nacos集群的步骤:(我建立的集群在D:\nacos-cluster目录下)<br>   -出现java.io.IOException: Failed to bind问题:是因为端口号被占用了,关闭端口的进程<br>      目前不知怎么解决,直接将报错的nacos服务删除,用其他几个nacos服务即可<br>   -以建立三个nacos作为集群为例<br>     1.解压三份nacos后,分别重名名为nacos1,nacos2,nacos3<br>     2.修改conf目录下的application.properties文件信息(跟上述配置nacos一样,且三个都要修改)<br>         注意:第一个文件的server.port&#x3D;8848,第二个server.port&#x3D;8849,第三个server.port&#x3D;8850<br>     3.如果有虚拟机的ip地址存在(ipconfig),需要关闭虚拟机的网络,从而才能用到主机的ip<br>         注意:关闭虚拟机的网络,会导致windows无法连接到liunx,如果需要连接,在打开即可<br>     4.复制conf目录下的cluster.conf.example并粘贴到同一目录下,重命名文件名为cluster.conf(注意三个都要做该操作)<br>     5.在cluster.conf文件信息最后加上以下东西: (注意三个都要做该操作)<br>         172.16.30.100:8848(自己的windows主机名:第一个nacos端的端口号)<br>         172.16.30.100:8849(自己的windows主机名:第二个nacos端的端口号)<br>         172.16.30.100:8850(自己的windows主机名:第三个nacos端的端口号)<br>     6.同时启动三个nacos(注意三个启动间隔不要长,如果太长会导致超时从而报错)   </p>
+<p>关于idea新建springboot项目用到nacos依赖<br>  -因为spring官方并没有引入nacos依赖,所以需要更换service URL(源)<br>  -如果是低版本的idea(比如我的2021版本)步骤:<br>     1.创建springboot项目,第一页有Choose starter service URL的选项,选择第二个Custom<br>     2.在Custom选项里添加阿里云源(<a target="_blank" rel="noopener" href="https://start.aliyun.com/">https://start.aliyun.com</a>)<br>     3.点击Custom选项最右边的按钮,会跳转到一个页面<br>     4.在页面里按照正常的步骤填写完所有信息,点击最下方的获取代码,会下载一个压缩包<br>     5.最后将压缩包导入idea即可<br>  -如果是高版本的idea步骤:<br>     1.会直接显示一个Server URL选项,修改默认的值为阿里云源(<a target="_blank" rel="noopener" href="https://start.aliyun.com/">https://start.aliyun.com</a>)<br>     2.接下来按正常步骤创建即可</p>
+<p>nacos做配置文件中心后:每次修改配置文件的内容后查看配置文件的内容就不需要重启服务,直接访问请求即可</p>
+<p>一 springboot与springcloud版本对应关系</p>
+<p>SpringCloud版本	SpringBoot版本<br>2022.0.0-M2	Spring Boot &gt;&#x3D;3.0.0-M2 and &lt;3.1.0-M1<br>2022.0.0-M1	Spring Boot &gt;&#x3D;3.0.0-M1 and &lt;3.0.0-M2<br>2021.0.3	Spring Boot &gt;&#x3D;2.6.1 and &lt;3.0.0-M1<br>2021.0.0-RC1	Spring Boot &gt;&#x3D;2.6.0-RC1 and &lt;2.6.1<br>2021.0.0-M3	Spring Boot &gt;&#x3D;2.6.0-M3 and &lt;2.6.0-RC1<br>2021.0.0-M1	Spring Boot &gt;&#x3D;2.6.0-M1 and &lt;2.6.0-M3<br>2020.0.5	Spring Boot &gt;&#x3D;2.4.0.M1 and &lt;2.6.0-M1<br>Hoxton.SR12	Spring Boot &gt;&#x3D;2.2.0.RELEASE and &lt;2.4.0.M1<br>Hoxton.BUILD-SNAPSHOT	Spring Boot &gt;&#x3D;2.2.0.BUILD-SNAPSHOT<br>Hoxton.M2	Spring Boot &gt;&#x3D;2.2.0.M4 and &lt;&#x3D;2.2.0.M5<br>Greenwich.BUILD-SNAPSHO	Spring Boot &gt;&#x3D;2.1.9.BUILD-SNAPSHOT and &lt;2.2.0.M4<br>Greenwich.SR2	Spring Boot &gt;&#x3D;2.1.0.RELEASE and &lt;2.1.9.BUILD-SNAPSHOT<br>Greenwich.M1	Spring Boot &gt;&#x3D;2.1.0.M3 and &lt;2.1.0.RELEASE<br>Finchley.BUILD-SNAPSHOT	Spring Boot &gt;&#x3D;2.0.999.BUILD-SNAPSHOT and &lt;2.1.0.M3<br>Finchley.SR4	Spring Boot &gt;&#x3D;2.0.3.RELEASE and &lt;2.0.999.BUILD-SNAPSHOT<br>Finchley.RC2	Spring Boot &gt;&#x3D;2.0.2.RELEASE and &lt;2.0.3.RELEASE<br> Finchley.RC1	 Spring Boot &gt;&#x3D;2.0.1.RELEASE and &lt;2.0.2.RELEASE<br>Finchley.M9	Spring Boot &gt;&#x3D;2.0.0.RELEASE and &lt;&#x3D;2.0.0.RELEASE<br>Finchley.M7	Spring Boot &gt;&#x3D;2.0.0.RC2 and &lt;&#x3D;2.0.0.RC2<br>Finchley.M6	Spring Boot &gt;&#x3D;2.0.0.RC1 and &lt;&#x3D;2.0.0.RC1<br>Finchley.M5	Spring Boot &gt;&#x3D;2.0.0.M7 and &lt;&#x3D;2.0.0.M7<br>Finchley.M4	Spring Boot &gt;&#x3D;2.0.0.M6 and &lt;&#x3D;2.0.0.M6<br>Finchley.M3	Spring Boot &gt;&#x3D;2.0.0.M5 and &lt;&#x3D;2.0.0.M5<br>Finchley.M2	Spring Boot &gt;&#x3D;2.0.0.M3 and &lt;2.0.0.M5<br>Edgware.SR5	1.5.20.RELEASE<br>Edgware.SR5	1.5.16.RELEASE<br>Edgware.RELEASE	1.5.9.RELEASE<br>Dalston.RC1	1.5.2.RELEASE</p>
+<p>二 Raft协议详解(分布式协议)<br>   原理类似于实际生活中的投票总统,以投票总统为例</p>
+<p>   假设有三个节点参选投票,过程如下:<br>      -假设在三个节点在苏醒过程中,有多个及其以上节点同时苏醒,那么会重新洗牌,就是说三个节点重新睡眠然后苏醒,最终直到只有一个节点率先苏醒为止<br>     (1)三个节点初始都是睡眠的,发出投票信息后,三个节点同时开始苏醒,最先苏醒的节点抢占先机(投自己一票)并将投票信息发送给其他节点<br>     (2)其他节点收到投票信息不得不将自己的投票投给它<br>     (3)最终这个先苏醒的节点收到最多的投票,成为总统</p>
+<p>  假设出现总统节点出现意外宕机无法运行的情况<br>     (1)首先剩下的节点重新睡眠然后苏醒,最先苏醒的节点抢占先机(投自己一票)并将投票信息发送给其他节点<br>     (2)其次其他节点收到投票信息不得不将自己的投票投给它<br>     (3)最终这个先苏醒的节点收到最多的投票,成为新任的总统<br>    -即使之前的前总统节点恢复运行状态,也无法再继续担任总统职位了<br>三 了解源码的作用<br>    (1)了解其原理(本质)<br>    (2)出现问题排除bug<br>    (3)优化代码<br>四 restful风格<br>    -以http动词的形式对url资源进行操作(比如get是查询,post是新增等)<br>五 Hystrix<br>    -作用:用来解决分布式系统中服务雪崩的情况,它提供了熔断器功能,类似于拦截器<br>六 关于出现maven的pom文件变成白色,有条线划掉的情况:<br>     打开File -&gt; 打开Settings -&gt; 打开Build,…. -&gt; 打开Build Tools -&gt; 打开 Maven -&gt; 打开Ignored Files -&gt; 把所有pom文件全部不勾选√<br>七 zipkin(链路追踪器) 追踪微服务的调用路径<br>    用于检测各个客户端连接通信发送请求速率,比如在前端页面发送一个请求路径,zipkin网页上就可以看到该请求的请求时间,速率等等<br>    在我的电脑上找到该jar包路径,进入cmd窗口,输入java -jar zipkin-server-2.23.9-exec.jar命令即可使用<br>八 admin(监控)<br>    负责监控各个客户端(应用实例)的性能,jvm等各种信息<br>九 网关 –gateway(springcloud官方提供)<br>    –核心是一组过滤器,按照先后执行顺序来执行过滤操作(order 0&#x2F;1&#x2F;2)<br>    –gateway三大组成:路由(重要),断言,过滤器(重要)<br>    –切记编写gateway服务不要加spring web依赖,因为spring web依赖的服务器是tomcat,与网关的服务器不同</p>
+<pre><code>--web三大组件:servlet,listener,filter(过滤器)
+--filter(过滤器)与interceptor(拦截器)的区别:
+   1.interceptor(拦截器)主要拦截进入controller的请求,不能拦截js,css等文件资源,而filter(过滤器)可以拦截所有的请求以及前端文件资源
+--nginx和gateway(网关)的区别
+   1.nginx是针对服务器级别的,而gateway是针对项目级别的,即一个nginx可以连接多个gateway网关,当一个项目只有一个gateway网关时,可以不用nginx,而是直接连接gateway网关
+     (知nginx应用范围是比网关大的)
+   2.nginx的性能比gateway网关好
+</code></pre>
+<p>十 网关之过滤器<br>     1.gatewayFilter 针对某一个路由做<br>         -记录接口的访问次数<br>         -限流操作<br>     2.globalFilter 针对全局 针对每个路由<br>         -黑名单校验<br>         -做全局的token检验<br>         -参数校验<br>十一 限流(注意限流只能应用在一个路径(路由)上,因为实现的是gatewayFilter类)<br>1 IP限流(5s内同一个ip访问超过3次,则限制不让访问,过一段时间才可以继续访问)<br>2 请求量限流(只要在一段时间内(窗口期),请求次数达到阈值,就直接拒绝后面来的访问了,过一段时间才可以继续访问)</p>
+<p>十二 生成令牌算法实现限流<br>  –执行过程<br>      外面的数据经过设置好的时间后存储进一个桶中,当外面的请求并发量比较大时就会导致桶内存储的数据全部取出<br>      但是由于数据的进入时间还没到,就访问不到数据,从而达到限流过程<br>  –可设置的参数 1.数据进入时间 2.桶存储的数据容量</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/11/28/docker%E5%AD%A6%E4%B9%A0/" rel="prev" title="docker学习">
+      <i class="fa fa-chevron-left"></i> docker学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/11/28/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/" rel="next" title="网络安全学习">
+      网络安全学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ldjc</p>
+  <div class="site-description" itemprop="description">有志者，事竟成，破釜沉舟，百二秦关终属楚；苦心人，天不负，卧薪尝胆，三千越甲可吞吴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ldjc</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

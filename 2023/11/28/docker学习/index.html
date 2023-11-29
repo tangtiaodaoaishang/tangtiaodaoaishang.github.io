@@ -219,7 +219,7 @@
                 类似于CMD指令,但是ENTRYPOINT不会被docker run后面的命令覆盖,而且这些命令行参数会被当作参数送给ENTRYPOINT指令执行的程序
         
 </code></pre>
-<p>14 DockerFile示例<br>    (1)centos系统<br>       1.新建&#x2F;myfile目录,并进入该目录,在官网下载后jdk的liunx版压缩包(我这里下的是1.8的),将该压缩包放在&#x2F;myfile目录下<br>       2.编写  vim Dockerfile,编辑以下内容<br>          FROM centos:7 (注意这里要加上版本号:7,否则会报错)<br>          MAINTAINER zzyy<a href="mailto:&#122;&#122;&#x79;&#121;&#98;&#x73;&#x40;&#x31;&#x32;&#54;&#46;&#99;&#111;&#109;">&#122;&#122;&#x79;&#121;&#98;&#x73;&#x40;&#x31;&#x32;&#54;&#46;&#99;&#111;&#109;</a></p>
+<p>14 DockerFile示例<br>    (1)centos系统<br>       1.新建&#x2F;myfile目录,并进入该目录,在官网下载后jdk的liunx版压缩包(我这里下的是1.8的),将该压缩包放在&#x2F;myfile目录下<br>       2.编写  vim Dockerfile,编辑以下内容<br>          FROM centos:7 (注意这里要加上版本号:7,否则会报错)<br>          MAINTAINER zzyy<a href="mailto:&#122;&#x7a;&#x79;&#121;&#98;&#x73;&#64;&#x31;&#x32;&#x36;&#x2e;&#99;&#x6f;&#x6d;">&#122;&#x7a;&#x79;&#121;&#98;&#x73;&#64;&#x31;&#x32;&#x36;&#x2e;&#99;&#x6f;&#x6d;</a></p>
 <pre><code>      ENV MYPATH /usr/local
       WORKDIR $MYPATH
       #安装vim编辑器

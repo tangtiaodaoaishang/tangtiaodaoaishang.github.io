@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>docker学习 | Hexo</title><meta name="author" content="ldjc"><meta name="copyright" content="ldjc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="关于每次开启liunx后,用docker ps查不到之前的所有容器也运行不了之前用过的容器(1)查询所有容器的id:docker container ls -a  也可以用docker ps -a(2)开启之前已关闭的容器实例:docker container start（容器ID或容器名）  –docker下的mysql8密码为123456,启动脚本在&#x2F;路径下(启动命令:sh dock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker学习">
+<meta property="og:url" content="https://tangtiaodaoaishang.github.io/2023/11/28/docker%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="关于每次开启liunx后,用docker ps查不到之前的所有容器也运行不了之前用过的容器(1)查询所有容器的id:docker container ls -a  也可以用docker ps -a(2)开启之前已关闭的容器实例:docker container start（容器ID或容器名）  –docker下的mysql8密码为123456,启动脚本在&#x2F;路径下(启动命令:sh dock">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tangtiaodaoaishang.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2023-11-28T12:55:22.000Z">
+<meta property="article:modified_time" content="2023-11-28T13:05:36.280Z">
+<meta property="article:author" content="ldjc">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tangtiaodaoaishang.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://tangtiaodaoaishang.github.io/2023/11/28/docker%E5%AD%A6%E4%B9%A0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'docker学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><meta name="generator" content="Hexo 7.0.0"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">docker学习</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">docker学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-28T12:55:22.000Z" title="发表于 2023-11-28 20:55:22">2023-11-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-28T13:05:36.280Z" title="更新于 2023-11-28 21:05:36">2023-11-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>关于每次开启liunx后,用docker ps查不到之前的所有容器也运行不了之前用过的容器<br>(1)查询所有容器的id:docker container ls -a  也可以用docker ps -a<br>(2)开启之前已关闭的容器实例:docker container start（容器ID或容器名） </p>
+<p>–docker下的mysql8密码为123456,启动脚本在&#x2F;路径下(启动命令:sh docker_insert_mysql8.0.20.sh)</p>
+<p>1 官网地址:<a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a><br>  镜像仓库地址:<a target="_blank" rel="noopener" href="https://www.docker.com/products/docker-hub/">https://www.docker.com/products/docker-hub/</a></p>
+<p>  docker compose官网下载步骤地址:<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a><br>  docker compose和docker版本对应关系官网地址:<a target="_blank" rel="noopener" href="https://docs.docker.com/compose/compose-file/compose-file-v3/">https://docs.docker.com/compose/compose-file/compose-file-v3/</a><br>     一下载与卸载<br>      1.compose官网下载步骤不全,应该有以下三步(注意因为是从github下的,所以可能会出现安装中途报错,一般多执行几次下载命令就可以解决)<br>      (1)要下载并安装独立撰写，请运行：curl -L “<a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$">https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$</a>(uname -s)-$(uname -m)” -o &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose<br>      (2)将可执行权限应用于安装目标路径中的独立二进制文件:chmod +x &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose<br>      (3)使用测试和执行撰写命令:docker-compose –version<br>      2.docker compose卸载:sudo rm &#x2F;usr&#x2F;local&#x2F;bin&#x2F;docker-compose<br>     二使用说明<br>      1.docker compose核心配置文件名:docker-compose.yml<br>      2.docker compose使用:编辑docker-compose.yml(vim docker-compose.yml)<br>     三常用命令<br>      1.启动所有编排容器服务<br>        docker-compose up -d<br>      2.验证并查看compose文件配置(如果为-q参数即查看编辑的docker-compose.yml内容是否有报错)<br>        docker-compose config [options]<br>          选项包括:–resolve-image-digests:将镜像标签标记为摘要 -q&#x2F;–quiet:只验证配置,不输出,当配置正确时,不输出任何内容,当文件配置错误,输出错误信息,–services:打印服务名,一行一个,–volumes:打印数据卷名,一行一个</p>
+<p>   portainer工具安装和使用(开启docker服务即可以开启portainer)<br>    (1)简介:该工具可以查看容器和镜像的使用情况并且还可以增加&#x2F;重启容器实例,添加新的镜像等一系列简化操作<br>    (2)安装步骤<br>       1.查看portainer镜像<br>         docker search portainer<br>       2.拉取对应的portainer镜像<br>         docker pull portainer&#x2F;portainer(镜像名)<br>       3.开启portainer容器实例<br>         docker run -d -p 8000:8000 -p 9000:9000 –name portainer –restart&#x3D;always -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock -v portainer_data:&#x2F;data  portainer&#x2F;portainer<br>         ( –restart&#x3D;always属性作用:跟随docker服务启动而启动,即portainer服务的状态和docker服务状态有关,9000是外部暴露的端口号)<br>       4.登录portainer网站(注意首次登陆需要注册用户名和密码,用户名默认为admin,我设置的密码为yan2003210)<br>          在网站上访问<a target="_blank" rel="noopener" href="http://ip:9000/">http://ip:9000/</a><br>  CLG容器重量级监控系统(开启docker服务即可以开启CLG服务)<br>    (1)简介:三剑客(注意其中一个端口是8080,在启动GVP项目时先关闭该容器避免端口被占用)<br>         1.CAdvisor:查询相关信息,存储信息两分钟<br>         2.InfluxDB:将查询到的信息持久化存储<br>         3.Granfana:可视化工具<br>    (2)使用步骤<br>       1.修改配置文件(vim docker-compose.yml)<br>添加以下内容:<br>version: “3.1”<br>volumes:<br>    grafana_data: {}</p>
+<p>services:<br>    influxdb:<br>        image: tutum&#x2F;influxdb:0.9<br>        container_name: ms01<br>        restart: always<br>        environment:<br>            - PRE_CREATE_DB&#x3D;cadvisor<br>        ports:<br>            - “8083:8083”<br>            - “8086:8086”<br>        volumes:<br>            - .&#x2F;data&#x2F;influxdb:&#x2F;data<br>    cadvisor:<br>        image: google&#x2F;cadvisor<br>        links:<br>            - influxdb:influxsrv<br>        command: -storage_driver&#x3D;influxdb -storage_driver_db&#x3D;cadvisor -storage_driver_host&#x3D;influxsrv:8086<br>        restart: always<br>        ports:<br>            - “8080:8080”<br>        volumes:<br>            - &#x2F;:&#x2F;rootfs:ro<br>            - &#x2F;var&#x2F;run:&#x2F;var&#x2F;run:rw<br>            - &#x2F;sys:&#x2F;sys:ro<br>            - &#x2F;var&#x2F;lib&#x2F;docker&#x2F;:&#x2F;var&#x2F;lib&#x2F;docker:ro<br>    grafana:<br>        user: “104”<br>        image: grafana&#x2F;grafana<br>        user: “104”<br>        restart: always<br>        links:<br>            - influxdb:influxsrv<br>        ports:<br>            - “3000:3000”<br>        volumes:<br>            - grafana_data:&#x2F;var&#x2F;lib&#x2F;grafana<br>        environment:<br>            - HTTP_USER&#x3D;admin<br>            - HTTP_PASS&#x3D;admin<br>            - INFLUXDB_HOST&#x3D;influxsrv<br>            - INFLUXDB_PORT&#x3D;8086<br>            - INFLUXDB_NAME&#x3D;cadvisor<br>            - INFLUXDB_USER&#x3D;root<br>            - INFLUXDB_PASS&#x3D;root<br>     (3)浏览三个服务(前提先执行编排命令:docker-compose up,启动三个服务)<br>        1.浏览cAdvisor收集服务:<a target="_blank" rel="noopener" href="http://ip:8080/">http://ip:8080/</a><br>        2.浏览influxdb存储服务:<a target="_blank" rel="noopener" href="http://ip:8083/">http://ip:8083/</a><br>        3.浏览grafana展现服务:<a target="_blank" rel="noopener" href="http://ip:3000/">http://ip:3000/</a><br>           注意第一次访问grafana时的邮箱&#x2F;用户名和密码默认都是admin,我自己设置的密码也是admin</p>
+<p>2 liunx上配置Docker条件<br>    -要求系统为64位,linux系统内核版本为3.8以上,建议选用Centos7.x<br>     -cat &#x2F;etc&#x2F;redhat-release 查看liunx版本号<br>     -uname -r 查看系统版本(一般3.10.0以上都可以)<br>3 Docker三要素:镜像,容器,仓库(存储镜像)</p>
+<p>4 Docker官网下载&#x2F;卸载liunx的centos文档地址:<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></p>
+<p>5 注意Docker安装配置过程中根据官网有一步是安装稳定的Docker仓库,<br>  就在安装yum-utils安装包之后的下一步,这里安装仓库不能采用官网的命令下载,<br>  因为官网来自国外,命令可能传不到国外，从而报错</p>
+<p>   –因此应该采用阿里云镜像下载仓库:<br>    yum-config-manager –add-repo <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br>  下载完仓库之后,下一步是更新yum软件包索引,这一步官网上没有<br>    该命令为:yum makecache fast<br>6 阿里云账号(淘宝):tb1289144630        密码:2003210@<br>  阿里云镜像服务个人实例:密码2003210yan@</p>
+<p>  可以配置阿里云镜像加速器(很重要)<br>  作用:在以后用ducker安装各类镜像时,加快速度,从而保证不会超时报错<br>7 在docker容器里添加新的命令<br>    这里以ubuntu系统下载vim命令为例:<br>      先下载ubuntu系统包管理器apt:apt-get update<br>      在下载vim命令:apt-get -y install vim<br>      安装完成后,commit成我们自己的新镜像:docker commit -m&#x3D;”提交的描述信息” -a&#x3D;”作者”  容器ID 要创建的目标镜像名:[标签名]<br>        比如docker commit -m&#x3D;”add vim cmd” -a&#x3D;”zzdy” 2d46f9c77f1a guigu&#x2F;myubuntu:1.1<br>      最后docker run创建一个新的容器实例并且启动该容器实例即可<br>8 在docker安装tomcat镜像步骤:<br>    首先需要查看是否具有centos镜像,没有要先下载centos镜像<br>    其次docker pull tomcat,然后运行镜像:docker run -d -p 8080:8080 -name&#x3D;[名字] tomcat<br>    最后,注意新版的(10.0以上的)tomcat下载完后启动该镜像容器然后把webapps.dist目录换成webapps<br>      使用命令mv webapps.dist webapps,这样用localhost:8080才能正常访问页面<br>9 在docker安装mysql镜像步骤:<br>  简易版(该版本存在中文报错和误删除容器数据消失的安全性问题)<br>    首先docker pull mysql,然后新建镜像实例:docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD&#x3D;210210 -d mysql:5.7<br>      这里新建镜像实例时要注意liunx有没有已经安装的mysql服务占用了3306端口(ps -ef|grep mysql)<br>      如果这里占用了,则需要systemctl stop mysql关闭已存在的mysql服务<br>    最后运行docker exec -it 容器ID bash,重启mysql镜像服务容器,之后就可以正常使用mysql代码了</p>
+<p>  实战版(使用容器卷)<br>      首先docker pull mysql<br>      然后新建镜像实例:docker run -d -p 3306:3306  –privileged&#x3D;true -v &#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql -v &#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql -v &#x2F;mysql&#x2F;conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d -e MYSQL_ROOT_PASSWORD&#x3D;210210 –name mysql1  mysql:5.7<br>      在&#x2F;mysql&#x2F;conf路径下新建my.cnf(通过容器卷同步给mysql容器实例)<br>         这里的路径根据实际情况,跟上述新建容器实例里的docker容器的mysql配置文件路径(&#x2F;etc&#x2F;mysql&#x2F;conf.d)对应的liunx主机路径<br>         这一步通过修改配置文件内容来消除数据库中文乱码的问题<br>         在my.cnf内输入:<br>            [client]<br>            default_character_set&#x3D;utf8<br>            [mysqld]<br>            collation_server&#x3D;utf8_general_ci<br>            character_set_server&#x3D;utf8<br>      重新启动mysql容器实例(docker restart 容器名字)在重新进入容器(docker exec -it 容器ID bash)并查看字符编码(show variables like ‘character%’);<br>      在新建库新建表在插入中文测试<br>10 在docker安装redis<br>   首先docker pull redis</p>
+<p>   在centos主机上新建目录&#x2F;app&#x2F;redis(mkdir -p &#x2F;app&#x2F;redis)<br>   将一个redis.conf文件模板拷贝进&#x2F;app&#x2F;redis目录下(cp 已存在的redis的配置文件路径(我的是&#x2F;usr&#x2F;local&#x2F;src&#x2F;redis-6.2.6&#x2F;redis.conf) &#x2F;app&#x2F;redis&#x2F;)<br>   &#x2F;app&#x2F;redis目录下修改redis.conf文件<br>     这里必须修改的有:<br>       (1)允许redis外地连接:注释掉bind 127.0.0.1(用#注释)<br>       (2)将daemonize yes注释或者设置daemonize no,因为该配置和docker run中的-d参数冲突,会导致容器一直启动失败<br>   使用redis镜像创建容器(也叫运行镜像)<br>     注意这里同样会有端口占用情况,如果liunx本身已经有redis服务占用6379,需要用systemctl stop redis停掉redis服务,在新建容器<br>        –然后新建镜像实例(容器卷记得加入–privileged&#x3D;true)<br>     docker run -p 6379:6379 –name redis1 –privileged&#x3D;true -v &#x2F;app&#x2F;redis&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf -v &#x2F;app&#x2F;redis&#x2F;data:&#x2F;data -d redis redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf<br>     注意新建容器后使用docker ps可能查不到redis容器,这时候可以使用redis logs 容器ID(容器名),查看报错在哪里(一般都是配置文件里的参数报错 报342行是因为redis镜像版本和redis配置文件版本不兼容)<br>     因为我本身安装的redis是最新版的,所以redis配置文件版本也是最新的,因此需要下载的redis镜像版本必须是最新版的<br>   测试redis-cli -h 主机名(我的liunx主机名为192.168.119.134)连接上来,即完成所有操作<br>11 mysql主从复制docker版:<br>      (1)新建主服务器容器实例3307:docker run -d -p 3307:3306  –privileged&#x3D;true -v &#x2F;mysql&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql -v &#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql -v &#x2F;mysql1&#x2F;conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d -e MYSQL_ROOT_PASSWORD&#x3D;210210 –name mysql1  mysql:5.7<br>      (2)在&#x2F;mysql1&#x2F;conf路径下新建my.cnf<br>         这里的路径根据实际情况,跟上述新建容器实例里的docker容器的mysql配置文件路径(&#x2F;etc&#x2F;mysql&#x2F;conf.d)对应的liunx主机路径<br>         在my.cnf内输入:<br>          [mysqld]<br>          server_id&#x3D;101<br>          binlog-ignore-db&#x3D;mysql<br>          log-bin&#x3D;mall-mysql-bin<br>          binlog_cache_size&#x3D;1M<br>          binlog_format&#x3D;mixed<br>          expire_logs_days&#x3D;7<br>          slave_skip_errors&#x3D;1062<br>      (3)重新启动mysql容器实例(docker restart 容器名字),并进入主服务器容器<br>      (4)在主服务器容器实例里创建数据同步用户<br>        –create user ‘slave‘@’%’ identified by ‘210210’;<br>        –grant replication slave,replication client on <em>.</em> to ‘slave‘@’%’;<br>      (5)新建从服务器容器实例3308:docker run -d -p 3308:3306  –privileged&#x3D;true -v &#x2F;mysql1&#x2F;log:&#x2F;var&#x2F;log&#x2F;mysql -v &#x2F;mysql1&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql -v &#x2F;mysql2&#x2F;conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d -e MYSQL_ROOT_PASSWORD&#x3D;210210 –name mysql2  mysql:5.7<br>      (6)在&#x2F;mysql2&#x2F;conf路径下新建my.cnf<br>           这里的路径根据实际情况,跟上述新建容器实例里的docker容器的mysql配置文件路径(&#x2F;etc&#x2F;mysql&#x2F;conf.d)对应的liunx主机路径<br>           在my.cnf内输入:<br>         [mysqld]<br>         server_id&#x3D;102<br>         binlog-ignore-db&#x3D;mysql<br>         log-bin&#x3D;mall-mysql-slave1-bin<br>         binlog_cache_size&#x3D;1M<br>         binlog_format&#x3D;mixed<br>         expire_logs_days&#x3D;7<br>         slave_skip_errors&#x3D;1062<br>         relay_log&#x3D;mall-mysql-relay-bin<br>         log_slave_updates&#x3D;1<br>         read_only&#x3D;1</p>
+<pre><code>  (7)修改完配置后重启容器实例(docker restart 容器名字)
+  (8)在主服务器容器实例中查看主从同步状态(show master status;)
+  (9)进入到从服务器容器,并进入mysql从数据库(mysql -u root -p)
+  (10)在从数据库中配置主从复制
+    change master to master_host=&#39;192.168.119.134&#39;,master_user=&#39;slave&#39;,master_password=&#39;210210&#39;,master_port=3307,master_log_file=&#39;mall-mysql-bin.000001&#39;,master_log_pos=2020,master_connect_retry=30;
+    (其中master_host的值是liunx主机的ip地址,master_user和master_password=&#39;210210&#39;的值是在主服务器容器内创建数据同步用户的用户名和密码)
+    master_port的值是主服务器容器的外端口号,master_log_file和master_log_pos的值是show master status查询后的第一列和第二列的值)
+  (11)在从数据库中查看主从同步状态(show slave status \G;) --这里的\G参数作用是竖着显示结果
+  (12)在从数据库中开启主从同步(start slave;)
+  (13)查看从数据库状态发现已经同步(show slave status \G;),同步的标志是Slave_IO_Running和Slave_SQL_Running的值为Yes而不是No
+  (14)主从复制测试
+  
+</code></pre>
+<p>12 一:3主3从redis集群配置<br>    (1)关闭防火墙+启动docker后台服务<br>    (2)新建6个docker容器实例<br>       docker run -d –name redis-node-1 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-1:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6381<br>       docker run -d –name redis-node-2 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-2:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6382<br>       docker run -d –name redis-node-3 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-3:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6383<br>       docker run -d –name redis-node-4 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-4:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6384<br>       docker run -d –name redis-node-5 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-5:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6385<br>       docker run -d –name redis-node-6 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-6:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6386<br>    (3)进入容器redis-node-1并为6台机器构建集群关系<br>       redis-cli –cluster create 192.168.119.134:6381 192.168.119.134:6382 192.168.119.134:6383 192.168.119.134:6384 192.168.119.134:6385 192.168.119.134:6386 –cluster-replicas 1<br>          (–cluster-replicas 1 表示每个master创建一个slave节点)<br>    (4)链接进入6381作为切入点,查看集群状态<br>       1.链接进入6381作为切入点,查看节点状态<br>       2.cluster info 查看集群信息<br>       3.cluster nodes 查看集群的主从容器的关系<br>    二:主从容错切换迁移<br>       (1)数据读写存储:<br>         1.以6381端口容器为例:docker exec -it redis-node-1 bash<br>             进入后如果是单机进入redis(redis-cli -p 6381),会出现一些key无法存入数据,因为采用的哈希槽算法分成了3个槽,只有在指定的范围内的key才能存储<br>             因此使用联机(-c参数)进入redis(redis-cli -p 6381 -c),范围超出则会跳到对应哈希槽的容器端口里存储key<br>         2.查看容器信息(redis-cli –cluster check 192.168.119.134:6381)<br>             使用上述命令连接redis即可查看集群中所有key存储的信息以及主从容器关系<br>       (2)容错切换迁移:<br>         1.主机6381和从机切换,先停止主机6381<br>         2.再次查看集群信息<br>         3.先还原之前的3主3从<br>         4.查看集群信息<br>    三:主从扩容步骤(实现四主四从)<br>       (1)新建6387,6388两个节点+新建后启动+查看是否8节点<br>         docker run -d –name redis-node-7 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-7:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6387<br>         docker run -d –name redis-node-8 –net host –privileged&#x3D;true -v &#x2F;data&#x2F;redis&#x2F;share&#x2F;redis-node-8:&#x2F;data redis –cluster-enabled yes –appendonly yes –port 6388<br>       (2)进入6387容器实例内部 docker exec -it redis-node-7 bash<br>       (3)将新增的6387节点(空槽号)作为master节点加入原集群<br>         redis-cli –cluster add-node 自己实际的IP地址:6387 自己实际的IP地址:6381<br>         (6387就是将来要作为master新增的节点端口,6381是原来集群节点里面的领路人端口)<br>       (4)检查集群情况第一次<br>         redis-cli –cluster check 192.168.119.134:6381<br>       (5)重新分派槽号(注意这里的分派原则不是重组平均分配,而是将之前的三块集群都分配一部分给新的集群)<br>         redis-cli –cluster reshard IP地址:端口号<br>         (redis-cli –cluster reshard 192.168.119.134:6381)<br>       (6)检查集群情况第二次<br>         redis-cli –cluster check 192.168.119.134:6381<br>       (7)为主节点6387分配从节点6388<br>         redis-cli –cluster add-node IP地址:新slave端口 IP地址:新master端口 –cluster-slave –cluster-master-id 新主机节点ID<br>         (redis-cli –cluster add-node 192.168.119.134:6388 192.168.119.134:6387 –cluster-slave –cluster-master-id (6387端口)主容器的编号)<br>       (8)检查集群情况第三次<br>         redis-cli –cluster check 192.168.119.134:6381<br>    四:主从缩容步骤(恢复三主三从)<br>       (1)让6387和6388下线(新增的主从容器),进入6387容器实例内部 docker exec -it redis-node-7 bash<br>       (2)检查集群情况获得6388的节点ID<br>          redis-cli –cluster check 192.168.119.134:6381<br>       (3)将6388(主容器)删除,从集群中将4号从节点6388删除<br>          redis-cli –cluster del-node IP地址:从机端口 从机容器ID<br>          (redis-cli –cluster del-node 192.168.119.134:6388 (6388端口)从容器的编号)<br>       (4)将6387的槽位清空,重新分配,本例将清除的槽号都给6381<br>          redis-cli –cluster reshard IP地址:端口号<br>         (redis-cli –cluster reshard 192.168.119.134:6381)<br>       (5)检查集群情况第二次<br>          redis-cli –cluster check 192.168.119.134:6381<br>       (6)将6387从容器删除<br>          redis-cli –cluster del-node IP地址:端口 节点ID<br>          (redis-cli –cluster del-node 192.168.119.134:6387 (6387端口)容器的编号)<br>       (7)检查集群情况第三次<br>          redis-cli –cluster check 192.168.119.134:6381<br>13 DockerFile简介<br>   (1)简介:它的功能类似于docker commit -m&#x3D;”提交的描述信息” -a&#x3D;”作者”  容器ID 要创建的目标镜像名:[标签名],只是它比commit命令使用更方便<br>   (2)基础知识:1 每条保留自指令都必须为大写字母且后面要跟随至少一个参数<br>               2 指令按照从上到小,顺序执行<br>               3 #表示注释<br>               4 每条指令都会创建一个新的镜像层并对镜像进行提交<br>   (3)Docker执行Dockerfile的大致流程<br>       1.docker从基础镜像运行一个容器<br>       2.执行一条指令并对容器作出修改<br>       3.执行类似docker commit的操作提交一个新的镜像层<br>       4.docker在基于刚提交的镜像运行一个新的容器<br>       5.执行dockerfile中的下一条指令直到所有指令都被执行完成<br>   (4)DockerFile常用保留字指令<br>       1.FROM 基础镜像,当前镜像是基于那个镜像的,指定一个已经存在的镜像作为模板,第一条必须是from<br>       2.MAINTAINER 镜像维护者的姓名和邮箱地址<br>       3.RUN 容器构建时需要运行的命令<br>          两种格式:<br>           shell格式:RUN &lt;命令行命令&gt;  #命令行命令等同于在终端操作的shell命令<br>              例如:RUN yum -y install vim<br>           exec格式:RUN [“可执行文件”,”参数1”,”参数2”]<br>              例如[“.&#x2F;test.php”,”dev”,”offline”] 等价于 RUN .&#x2F;test.php dev offline<br>         RUN是在docker build时运行<br>       4.EXPOSE 当前容器对外暴露出的端口<br>       5.WORKDIR 指定在运行容器(docker run 容器)后,终端默认登录进来的工作目录(pwd),就是一个落脚点<br>       6.USER 指定该镜像以什么样的用户去执行,如果都不指定,默认是root<br>       7.ENV 用来在构建镜像过程中设置环境变量<br>          例如:ENV PATH &#x2F;usr&#x2F;mytest和WORKDIR $PATH<br>       8.ADD 将宿主机目录下的文件拷贝进镜像且会自动处理URL和解压tar压缩包(比如容器里的jdk压缩包拷贝进新的镜像并且自动解压)<br>       9.COPY 类似于ADD,拷贝文件和目录到镜像中<br>              将从构建上下文目录中的&lt;源路径&gt;的文件&#x2F;目录复制到新的一层的镜像内的&lt;目标路径&gt;位置:<br>                   -COPY src dest<br>                   -COPY [“src”,”dest]<br>                   -&lt;src源路径&gt;:源文件或者源目录<br>                   -&lt;dest目标路径&gt;:容器内的指定路径,该路径不用事先建好<br>      10.VOLUME 容器数据卷,用于数据保存和持久化工作<br>      11.CMD 指定容器启动后要干的事情<br>             注意:Dockerfile中可以有多个CMD指令,但只有最后一个生效,CMD会被docker run之后的参数替换<br>                  比如docker run -it -p 8080:8080 容器ID &#x2F;bin&#x2F;bash (其中的&#x2F;bin&#x2F;bash参数会把CMD命令替换,导致无法启动tomcat服务器)<br>             该命令和之前的RUN命令区别:<br>               相同点:<br>                  -CMD指令的格式和RUN的格式类似,也是分为shell和exec格式<br>                  -shell格式:CMD &lt;命令&gt;<br>                  -exec格式:CMD [“可执行文件”,”参数1”,”参数2”…]<br>                  -参数列表格式:CMD [“参数1”,”参数2”…],在指定了ENTRYPOINT指令后,用CMD指定具体的参数<br>               不同点:<br>                  -CMD是在docker run时运行<br>                  -RUN是在docker build时运行</p>
+<pre><code>  12.ENTRYPOINT 也是用来指定一个容器启动时要运行的命令
+                类似于CMD指令,但是ENTRYPOINT不会被docker run后面的命令覆盖,而且这些命令行参数会被当作参数送给ENTRYPOINT指令执行的程序
+        
+</code></pre>
+<p>14 DockerFile示例<br>    (1)centos系统<br>       1.新建&#x2F;myfile目录,并进入该目录,在官网下载后jdk的liunx版压缩包(我这里下的是1.8的),将该压缩包放在&#x2F;myfile目录下<br>       2.编写  vim Dockerfile,编辑以下内容<br>          FROM centos:7 (注意这里要加上版本号:7,否则会报错)<br>          MAINTAINER zzyy<a href="mailto:&#x7a;&#x7a;&#x79;&#121;&#x62;&#115;&#64;&#x31;&#50;&#54;&#46;&#x63;&#x6f;&#x6d;">&#x7a;&#x7a;&#x79;&#121;&#x62;&#115;&#64;&#x31;&#50;&#54;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<pre><code>      ENV MYPATH /usr/local
+      WORKDIR $MYPATH
+      #安装vim编辑器
+      RUN yum -y install vim
+      #安装ifconfig命令查看网络IP
+      RUN yum -y install net-tools
+      #安装java8及lib库
+      RUN yum -y install glibc.i686
+      #注意这里的路径必须是/usr/local/java
+      RUN mkdir /usr/local/java
+      #ADD 是相对路径jar把jar的压缩包添加到容器中,安装包必须要和Dockerfile文件在同一位置
+      #注意这里的路径必须是/usr/local/java/ 
+      ADD jdk-8u161-linux-x64.tar.gz /usr/local/java/
+      #配置java环境变量
+      ENV JAVA_HOME /usr/local/java/jdk1.8.0_161
+      ENV JRE_HOME $JAVA_HOME/jre
+      ENV CLASSPATH $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH
+      ENV PATH $JAVA_HOME/bin:$PATH
+      EXPOSE 80
+      CMD echo $MYPATH
+      CMD echo &quot;success--------------------ok&quot;
+      CMD /bin/bash
+    3 构建 docker build -t 新镜像名字:TAG .(注意TAG后面有个空格,空格后有个点)
+    4 运行 docker run -it 新镜像名字:TAG(镜像ID) bash
+   
+</code></pre>
+<p>15 虚悬镜像<br>     (1)查看本地所有的虚悬镜像:docker image ls -f dangling&#x3D;true<br>     (2)删除所有的虚悬镜像:docker image prune<br>16 演示用dockerfile发送微服务(springboot代码)部署到docker上<br>     (1)新建springboot工程编写后maven打包成jar包到liunx目录里(我这里的springboot的jar包在&#x2F;usr&#x2F;local&#x2F;app目录下)<br>     (2)在&#x2F;usr&#x2F;local&#x2F;app(同级)目录下使用vim Dockerfile<br>     (3)编写Dockerfile:</p>
+<pre><code>    #jdk版本要与springbootjdk版本一致(我的springboot项目的jdk版本是11)
+    #建立一个新的镜像文件，配置模板：新建立的镜像是以centos为基础模板
+    #因为jdk必须运行在操作系统之上
+    #注意:如果已经在liunx上配置好了java版本环境,那么直接使用FROM java:版本号即可
+     FROM centos:7
+     #作者
+     MAINTAINER zzyy
+     #VOLUME 指定临时文件目录为/tmp,在主机/var/lib/docker目录下创建一个临时文件并链接到容器的/tmp
+     VOLUME /tmp
+     #创建一个新目录来存储jdk文件
+     #注意这里的路径必须是/usr/local/java
+     RUN mkdir /usr/local/java
+     #将jdk压缩文件复制到镜像中，它将自动解压缩tar文件
+     #注意这里的路径必须是/usr/local/java
+     ADD jdk-11.0.20_linux-x64_bin.tar.gz /usr/local/java/
+     #设置环境变量
+     ENV JAVA_HOME /usr/local/java/jdk-11.0.20
+     ENV PATH $JAVA_HOME/bin:$PATH
+     #将jar包添加到容器中并更名为zzyy_docker.jar
+     ADD springboot_08_ssmp-0.0.1-SNAPSHOT.jar zzyy_docker.jar
+     #运行jar包
+     RUN bash -c &#39;touch /zzyy_docker.jar&#39;
+     ENTRYPOINT [&quot;java&quot;,&quot;-jar&quot;,&quot;/zzyy_docker.jar&quot;]
+     #暴露8080端口作为微服务
+     EXPOSE 8080
+
+
+ (4)构建镜像
+    docker build -t 新镜像名字:TAG .
+    (docker build -t zzyy_docker:1.6 .)
+ (5)运行镜像容器(这里注意因为启动jar包是不需要进行交互的,为防止参数覆盖命令,不要在最后加bash)
+      -我这里的外/内端口号是8080(因为springboot项目的端口号是8080,所以外端口是8080)
+      -切记:这里需要强调jdk版本要与springboot的jdk版本一致,否则会出现容器启动后又关闭的错误)
+    docker run -d -p 外端口号:内端口号 新镜像名字:TAG(镜像ID)
+      -注意下一次重启容器时使用:docker exec -d  新镜像名字:TAG(镜像ID) bash
+</code></pre>
+<p>17 docker网络模式<br>     -使用docker inspect 容器ID&#x2F;容器名字 查看容器内部网络配置的具体信息<br>   (1)bridge(桥接)模式 -默认(ip地址随容器增加依次递增)<br>    会在本地主机和容器内分别创建一个虚拟接口,并让它们彼此联通(这样一对接口叫veth pair)<br>     -容器实例内部的虚拟接口叫eth0,本机主机的虚拟接口叫veth<br>     -容器和主机通过docker0这一网卡(主机)进行通信<br>   (2)host(主机)模式  -使用–network host参数即开启host网络模式<br>   不会创建ip地址,使用liunx主机的ip地址,不存在端口映射,与linux主机共享同一个ip配置<br>   注意:该网络模式一般不使用-p参数,因为不存在端口映射,且使用该网络模式的容器的网络配置情况和宿主机的网络配置情况一致<br>   示例<br>     docker run -d  –network host –name tomcat83  tomcat(容器ID)<br>   (3)none模式  -使用–network none即开启none网络模式<br>   该模式并不会为docker容器进行任何网络配置,也就是说这个docker容器中既没有网卡,IP,路由等信息,只有一个IO回环网络<br>      -需要自己为docker容器添加网卡,配置IP等等<br>   (4)container模式  -使用–network container:容器名<br>   新建的容器和已经存在的一个容器共享一个网络的ip配置而不是和宿主机共享,<br>   新创建的容器不会创建自己的网卡,配置自己的IP,而是和一个指定的容器共享IP,端口范围等<br>   (5)自定义网络  保证能够使用服务名来访问其他容器而非端口(ping 容器名)<br>       1.新建自定义网络:docker network create 网络名<br>       2.查看是否创建成功:docker network ls<br>       3.新建容器加入上一步新建的自定义网络:<br>          -docker run -d -p 8081:8080 –network zzyy_network –name tomcat81 tomcat<br>          -docker run -d -p 8082:8080 –network zzyy_network –name tomcat82 tomcat<br>       4.分别进入两个容器中测试ping 容器名是否成功</p>
+<p>Docker重要命令:<br>1 导入和导出容器<br>  导入:export 导出容器的内容留作为一个tar归档文件[对应import命令]<br>       docker export 容器ID &gt;文件名.tar<br>  导出:import从tar包中的内容创建一个新的文件系统再导入为镜像[对应export]<br>       cat 文件名.tar | docker import - 镜像用户&#x2F;镜像名:镜像版本号<br>       (其中镜像用户,镜像名,镜像版本号都是任意取的)<br>  使用导出的镜像:docker run -it 镜像用户&#x2F;镜像名:镜像版本号 bash</p>
+<p>2 从容器中拷贝(备份)文件到liunx主机上<br>  docker cp 容器ID:要拷贝的容器内容路径 备份到liunx主机的路径</p>
+<p>3 显示目前在 docker的文件系统磁盘使用情况统计<br>  docker system df<br>4 查看docker里的mysql容器中数据库编码的所有属性的字符编码<br>  show variables like ‘character%’;<br>5 查看容器日志输出<br>    -如果发现启动容器后用docker ps -a查看后发现容器在开启后又自动退出时<br>  使用docker logs 容器ID,查看容器启动是否有报错<br>6 查看docker的网络情况(可以使用docker network –help查看该命令的相关参数)<br>  docker network ls<br>7 查看各容器使用情况(比如cpu,内存等实时使用情况)<br>  docker stats</p>
+<p>docker面试题<br>1 虚悬镜像是什么?<br>    该镜像是值用docker images查看镜像时,仓库名(REPOSITORY)和版本号(TAG)都是<none>值的镜像<br>2 关于开启用exit或者ctrl+p+q命令退出的容器命令区别:<br>    docker exec -it 容器ID &#x2F;bin&#x2F;bash(bash)(常用)<br>    docker attach 容器ID<br>   attach是直接进入容器启动命令的终端,不会启动新的进程,如果用exit退出,则会导致容器的停止<br>   exec是在容器中打开新的终端,并且可以开启新的进程,用exit退出,不会导致容器的停止<br>3 redis的集群节点为什么不可能超过1000个,槽位为什么是16384<br>    因为集群节点越多,心跳包的消息体内携带的数据越多,如果节点超过1000个,也会导致网络堵塞<br>    因此建议使用1000以内的redis集群,而对于这种集群,16384个槽位够用了,没必要在拓展了<br>4 阿里场景设计必考题目:假设1-2亿条数据需要缓存,请问如何设计这个存储案例<br>    使用分布式存储算法(总共三种)<br>    (1)哈希取余分区(小厂)<br>    (2)一致性哈希算法分区<br>    (3)哈希槽分区(大厂)</p>
+<p>liunx常用命令<br>1 df -h 显示目前在 Linux 系统上的文件系统磁盘使用情况统计(-h参数是使用人类可读的格式)<br>注意该命令在docker中为docker system df<br>2 ps -ef|grep 关键字 比如关键字是docker,则表示查询使用docker所有的进程情况</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://tangtiaodaoaishang.github.io">ldjc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://tangtiaodaoaishang.github.io/2023/11/28/docker%E5%AD%A6%E4%B9%A0/">https://tangtiaodaoaishang.github.io/2023/11/28/docker%E5%AD%A6%E4%B9%A0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://tangtiaodaoaishang.github.io" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/11/28/springcloud%E5%AD%A6%E4%B9%A0/" title="springcloud学习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">springcloud学习</div></div><div class="info-2"><div class="info-item-1">注意:steam++软件会占用80端口,如果要启动80端口的项目,需要进任务管理器(查看对应的pid名)停止进程注意:nacos启动是依赖于数据库的,所以启动nacos时,需要开启数据库,我设置的数据库名为nacos 查看windows指定端口占用命令:netstat -aon|findstr 端口号结束windows相应的端口进程命令:taskkill &#x2F;f &#x2F;t &#x2F;im PID名查看linux指定端口占用命令:netstat -anp|grep 8080结束linux相应的端口进程命令:kill -9 PID名 关于nacos集成feign的bug   已解决集成feign报错：No Feign Client for loadBalancing defined. Did you forget to include      解决方案:加入spring-cloud-loadbalancer依赖,不然loadbalancer无效                    org.springframework.cloud           ...</div></div></div></a><a class="pagination-related" href="/2023/11/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">第一篇文章</div></div><div class="info-2"><div class="info-item-1">欢迎来到我的博客 </div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">ldjc</div><div class="author-info-description">有志者，事竟成，破釜沉舟，百二秦关终属楚；苦心人，天不负，卧薪尝胆，三千越甲可吞吴</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E9%A1%BB%E7%9F%A5/" title="博客搭建须知">博客搭建须知</a><time datetime="2023-11-28T13:01:00.000Z" title="发表于 2023-11-28 21:01:00">2023-11-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0/" title="网络安全学习">网络安全学习</a><time datetime="2023-11-28T13:00:05.000Z" title="发表于 2023-11-28 21:00:05">2023-11-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/springcloud%E5%AD%A6%E4%B9%A0/" title="springcloud学习">springcloud学习</a><time datetime="2023-11-28T12:58:30.000Z" title="发表于 2023-11-28 20:58:30">2023-11-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/docker%E5%AD%A6%E4%B9%A0/" title="docker学习">docker学习</a><time datetime="2023-11-28T12:55:22.000Z" title="发表于 2023-11-28 20:55:22">2023-11-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/11/28/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="第一篇文章">第一篇文章</a><time datetime="2023-11-28T08:20:02.000Z" title="发表于 2023-11-28 16:20:02">2023-11-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By ldjc</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
